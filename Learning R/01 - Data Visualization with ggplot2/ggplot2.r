@@ -204,3 +204,54 @@ ggplot(data=mpg, mapping=aes(x=cty, y= hwy))+
 ggplot(data=mpg, mapping=aes(x=class, y= hwy))+
   geom_boxplot()  +
   coord_flip()
+
+# coord quick map
+
+install.packages("maps")
+library(maps)
+library(tidyverse)
+
+nz<- map_data("nz")
+
+nz
+
+ggplot(data = nz, mapping = aes(x=long, y=lat, group=group))+
+  geom_polygon(fill ="white", color="black")+
+  coord_quickmap()
+
+# polar_coordinates   coord_polar
+
+bar <- ggplot(data=diamonds)+
+  geom_bar(
+    mapping = aes(x=cut, fill=cut),
+    show.legend = FALSE,
+    width = 1
+  )+
+  theme(aspect.ratio = 1)+
+  labs(x=NULL, y=NULL)
+
+bar+coord_flip()
+bar+coord_polar()
+
+
+ggplot(data=diamonds)+
+  geom_bar(
+    mapping = aes(x=cut, fill=clarity)  )+
+  labs(x=NULL, y=NULL)+
+  coord_polar()
+
+
+?labs
+
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_abline() +
+  coord_fixed()
+
+
+?coord_fixed
+
+a <- 5
+a <- 6
+
+filter(diamonds, carat==3)
